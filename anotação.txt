@@ -1,0 +1,52 @@
+CRUD
+C = Create
+R = Read - select
+U = update - 
+D = delete
+
+extraimos os arquivos para o xampp
+C:\xampp\htdocs
+------------------------------------------------------
+executamos o script de banco de dados
+------------------------------------------------------
+Abrir o Xampp que está na area de trabalho;
+------------------------------------------------------
+Arquivo: cad.usuario
+
+<form action="php/insert_usuario.php" method="post">
+--action:"script que vai receber os dados"
+--method="Post"
+
+<input type="text" name="nome" class="form-control">
+--name="nome"
+
+<button type="submit" class="btn btn-success">
+--type="submit"
+------------------------------------------------------
+Arquivo: insert_usuario.php
+
+<?php 
+//Incluir o arquivo da conexão
+include 'conexao.php';
+
+//Receber os dados do formulario atraves do $_POST
+$nome = $_POST['nome'];
+$email = $_POST['email'];
+$usuario = $_POST['usuario'];
+$senha = $_POST['senha'];
+
+//definir uma variavel para o insert
+$insert = "INSERT INTO tb_usuario VALUES (NULL, '$nome', '$email', '$usuario', '$senha')";
+
+//Utilizar a função query() para executar o insert dentro do banco
+$query = $conexao->query($insert);
+
+if ($query == true) {
+    echo "<script> alert('Usuario cadastrado com Sucesso!'); history.back() </script>";
+}
+
+
+?>
+
+
+
